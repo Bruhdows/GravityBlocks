@@ -33,7 +33,7 @@ public record GravityStickManager(GravityBlocksPlugin plugin) {
             meta.lore(Stream.of(
                     "",
                     "<!i><yellow><b>RIGHT CLICK <!b><gray>to grab/release blocks",
-                    "<!i><yellow><b>LEFT CLICK <b!><gray>to delete or throw blocks",
+                    "<!i><yellow><b>LEFT CLICK <!b><gray>to delete or throw blocks",
                     "",
                     "<!i><gold>Have fun with gravity!"
             ).map(TextUtil::color).toList());
