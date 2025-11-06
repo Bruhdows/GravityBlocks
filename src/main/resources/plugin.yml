@@ -1,0 +1,8 @@
+name: GravityBlocks
+main: com.bruhdows.gravityblocks.GravityBlocksPlugin
+api-version: 1.21
+version: 1.0
+author: Bruhdows
+commands:
+  gravityblock:
+    permission: gravityblocks.command.gravityblock
