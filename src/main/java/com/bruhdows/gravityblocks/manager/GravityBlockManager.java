@@ -1,10 +1,12 @@
 package com.bruhdows.gravityblocks.manager;
 
-import com.bruhdows.gravityblocks.GravityBlocksPlugin;
 import com.bruhdows.gravityblocks.object.GravityBlock;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.util.BoundingBox;
+import org.bukkit.util.RayTraceResult;
+import org.bukkit.util.Vector;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,22 +45,22 @@ public class GravityBlockManager {
 
     public GravityBlock getTargetedBlock(Player player, double maxDistance) {
         Location eyeLoc = player.getEyeLocation();
-        org.bukkit.util.Vector direction = eyeLoc.getDirection();
+        Vector direction = eyeLoc.getDirection().normalize();
+        Vector start = eyeLoc.toVector();
 
         GravityBlock closest = null;
         double closestDistance = maxDistance;
 
         for (GravityBlock block : gravityBlocks) {
-            Location blockLoc = block.getLocation();
-            org.bukkit.util.Vector toBlock = blockLoc.toVector().subtract(eyeLoc.toVector());
+            BoundingBox boundingBox = block.getBoundingBox(block.getLocation());
+            RayTraceResult result = boundingBox.rayTrace(start, direction, maxDistance);
 
-            double distance = toBlock.length();
-            if (distance > maxDistance) continue;
-
-            double dot = toBlock.normalize().dot(direction);
-            if (dot > 0.95 && distance < closestDistance) {
-                closest = block;
-                closestDistance = distance;
+            if (result != null) {
+                double distance = result.getHitPosition().distance(start);
+                if (distance < closestDistance) {
+                    closest = block;
+                    closestDistance = distance;
+                }
             }
         }
 
@@ -68,7 +70,7 @@ public class GravityBlockManager {
     public GravityBlock getHeldBlock(Player player) {
         for (GravityBlock block : gravityBlocks) {
             if (block.isHeld() && block.getHolder() != null &&
-                block.getHolder().getUniqueId().equals(player.getUniqueId())) {
+                    block.getHolder().getUniqueId().equals(player.getUniqueId())) {
                 return block;
             }
         }

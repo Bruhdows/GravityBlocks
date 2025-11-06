@@ -2,7 +2,7 @@
 
 Created in about 2 hours during KasaiSora's plugin review stream.
 
-A simple plugin that allows you to spawn blocks that interact with gravity and each other. 
+A simple plugin that allows you to spawn blocks that interact with gravity and each other.
 
 Due to time constraints, it hasn't been uploaded to Modrinth yet, and verification would likely take longer than needed.
 

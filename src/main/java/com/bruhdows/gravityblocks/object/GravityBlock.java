@@ -3,8 +3,6 @@ package com.bruhdows.gravityblocks.object;
 import lombok.Getter;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.Particle;
-import org.bukkit.World;
 import org.bukkit.entity.BlockDisplay;
 import org.bukkit.entity.Display;
 import org.bukkit.entity.Player;
@@ -278,15 +276,13 @@ public class GravityBlock {
                 avgVelocity.add(velocityHistory[i]);
             }
 
-            if (samplesUsed > 0) {
-                avgVelocity.multiply(1.0 / samplesUsed);
+            avgVelocity.multiply(1.0 / samplesUsed);
 
-                double momentumMultiplier = 1.8;
-                this.velocity = avgVelocity.multiply(momentumMultiplier);
+            double momentumMultiplier = 1.8;
+            this.velocity = avgVelocity.multiply(momentumMultiplier);
 
-                if (this.velocity.length() > MAX_VELOCITY) {
-                    this.velocity.normalize().multiply(MAX_VELOCITY);
-                }
+            if (this.velocity.length() > MAX_VELOCITY) {
+                this.velocity.normalize().multiply(MAX_VELOCITY);
             }
         }
 

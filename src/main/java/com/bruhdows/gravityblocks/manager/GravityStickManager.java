@@ -2,7 +2,6 @@ package com.bruhdows.gravityblocks.manager;
 
 import com.bruhdows.gravityblocks.GravityBlocksPlugin;
 import com.bruhdows.gravityblocks.util.TextUtil;
-import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
@@ -33,8 +32,8 @@ public record GravityStickManager(GravityBlocksPlugin plugin) {
             meta.displayName(TextUtil.color("<!i><gold><b>Gravity Stick"));
             meta.lore(Stream.of(
                     "",
-                    "<!i><yellow><b>RIGHT CLICK <gray>to grab/release blocks",
-                    "<!i><yellow><b>LEFT CLICK <gray>to delete or throw blocks",
+                    "<!i><yellow><b>RIGHT CLICK <!b><gray>to grab/release blocks",
+                    "<!i><yellow><b>LEFT CLICK <b!><gray>to delete or throw blocks",
                     "",
                     "<!i><gold>Have fun with gravity!"
             ).map(TextUtil::color).toList());
